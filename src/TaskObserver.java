@@ -1,2 +1,3 @@
-public class TaskObserver {
+public interface TaskObserver {
+    void update(String notification);
 }
