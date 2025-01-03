@@ -1,39 +1,69 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    ArrayList<Task> TaskList = new ArrayList<>();
+    private final NotificationCenter notificationCenter;
 
+    public TaskList(NotificationCenter notificationCenter) {
+        this.notificationCenter = notificationCenter;
+    }
 
-    public List<Task> getAllTasks() {
-        List<Task> tasks = new ArrayList<>();
-        String query = "SELECT * FROM tasks";
-        try (Connection connection =  DatabaseConnection.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(query)){
-            while (rs.next()) {
-                
-            }
-
+    public void addTask(Task task) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(
+                     "INSERT INTO tasks (name, category, deadline) VALUES (?, ?, ?)")) {
+            pstmt.setString(1, task.getName());
+            pstmt.setString(2, task.getCategory());
+            pstmt.setString(3, task.getDeadline());
+            pstmt.executeUpdate();
+            notificationCenter.setNotification("Task added: " + task.getName());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
-
-
-    public void addTask(String name,String description, String category, String deadline) {
-        String query = "INSERT INTO TASKS" + "(task_name, description, category, deadline) values(" +
-                name + description + category + deadline + ")";
+    public void deleteTask(String taskName) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM tasks WHERE task_name = ?")) {
+            pstmt.setString(1, taskName);
+            pstmt.executeUpdate();
+            notificationCenter.setNotification("Task deleted: " + taskName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void removeTask() {
-
+    public void editTask(String oldName, String newName) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("UPDATE tasks SET name = ? WHERE name = ?")) {
+            pstmt.setString(1, newName);
+            pstmt.setString(2, oldName);
+            pstmt.executeUpdate();
+            notificationCenter.setNotification("Task edited: " + oldName + " -> " + newName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-
+    public List<Task> getTasks() {
+        List<Task> tasks = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM tasks")) {
+            while (rs.next()) {
+                tasks.add(new Task(
+                        rs.getString("task_name"),
+                        rs.getString("description"),
+                        rs.getString("category"),
+                        rs.getString("deadline")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
 }
+
+
