@@ -1,7 +1,7 @@
 create table tasks (
-ID int key,
-task_name varchar(24) not null,
-short_descrpition varchar(256),
+id INT AUTO_INCREMENT PRIMARY KEY,
+task_name varchar(24) NOT NULL,
+description varchar(150),
 category varchar(24),
-deadline date
+deadline DATE
 );
