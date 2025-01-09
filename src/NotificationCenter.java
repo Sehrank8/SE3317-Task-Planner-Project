@@ -8,7 +8,7 @@ public class NotificationCenter implements Subject {
 
     public void setNotification(String notification) {
         this.notification = notification;
-        notifyObservers("Task edited: " + oldName + " -> " + newName);
+        notifyObservers();
     }
 
     @Override
@@ -21,7 +21,8 @@ public class NotificationCenter implements Subject {
         observers.remove(o);
     }
 
-    public static void notifyObservers(String s) {
+    @Override
+    public void notifyObservers() {
         for (TaskObserver observer : observers) {
             observer.update(notification);
         }
