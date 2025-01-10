@@ -2,20 +2,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskList {
+public class Model {
     private final NotificationCenter notificationCenter;
 
-    public TaskList(NotificationCenter notificationCenter) {
+    public Model(NotificationCenter notificationCenter) {
         this.notificationCenter = notificationCenter;
     }
 
     public void addTask(Task task) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(
-                     "INSERT INTO tasks (name, category, deadline) VALUES (?, ?, ?)")) {
+                     "INSERT INTO tasks (task_name, description, category, deadline) VALUES (?, ?, ?, ?)")) {
             pstmt.setString(1, task.getName());
-            pstmt.setString(2, task.getCategory());
-            pstmt.setString(3, task.getDeadline());
+            pstmt.setString(2, task.getDescription());
+            pstmt.setString(3, task.getCategory());
+            pstmt.setString(4, task.getDeadline());
             pstmt.executeUpdate();
             notificationCenter.setNotification("Task added: " + task.getName());
         } catch (SQLException e) {
