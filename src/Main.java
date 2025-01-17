@@ -1,11 +1,28 @@
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TaskView taskView = new TaskView();
-        Message basicmessage = new BasicMessage();
-        Message birthday = new BirthdayMessage(basicmessage);
-        Message notification = new NotificationMessage(birthday);
-        System.out.println(notification.getMessage());
-        notification.addDay();
-        System.out.println(notification.getMessage());
+        TaskModel model = new TaskModel();
+        TaskView view = new TaskView();
+        TaskController controller = new TaskController(model, view);
+
+        // Sample Tasks
+      /*  model.addTask(new Task("Submit Report", "Submit project report", "Work", "2025-01-03"));
+        model.addTask(new Task("Grocery Shopping", "Buy groceries", "Personal", "2025-01-04")); */
+
+        // Initial Task List
+        List<Task> tasks = model.getTasks();
+        StringBuilder taskList = new StringBuilder();
+        for (Task task : tasks) {
+            taskList.append(task.getName())
+                    .append(" - ")
+                    .append(task.getDescription())
+                    .append(" - ")
+                    .append(task.getCategory())
+                    .append(" - ")
+                    .append(task.getDeadline())
+                    .append("\n");
+        }
+        view.updateTaskList(taskList.toString());
     }
 }

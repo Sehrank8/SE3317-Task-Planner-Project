@@ -87,7 +87,7 @@ public class TaskModel implements Subject {
     @Override
     public void notifyObservers(String string) {
         for (Observer observer : observerList) {
-            observer.updateNotification();
+            observer.updateNotification(string);
         }
 
     }

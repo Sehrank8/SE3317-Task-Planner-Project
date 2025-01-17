@@ -1,13 +1,21 @@
-public class BirthdayMessage extends MessageDecorator{
-    Message message;
+import java.time.LocalDate;
 
-    public BirthdayMessage(Message message) {
-        this.message = message;
+
+public class BirthdayMessage extends MessageDecorator {
+    private final String birthday;
+
+    public BirthdayMessage(Message message, String birthday) {
+        super(message);
+        this.birthday = birthday;
     }
 
     @Override
     public String getMessage() {
-        return message.getMessage() + " Happy Birthday User!!";
+        String baseMessage = message.getMessage();
+        if (LocalDate.now().toString().equals(birthday)) {
+            baseMessage += " - Happy Birthday!";
+        }
+        return baseMessage;
     }
 
     @Override

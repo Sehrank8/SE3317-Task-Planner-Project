@@ -1,16 +1,20 @@
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-class BasicMessage extends Message {
-    LocalDate date = LocalDate.parse("2025-01-01");
-    DayOfWeek dayOfWeek = date.getDayOfWeek();
+
+public class BasicMessage extends Message {
+    private LocalDate date;
+
     public BasicMessage() {
-        message = dayOfWeek + "," + date;
+        this.date = LocalDate.now();
+        DayOfWeek day = date.getDayOfWeek();
+        message = day + ", " + date;
     }
 
+    @Override
     public void addDay() {
-        this.date = date.plusDays(1);
-        this.dayOfWeek = date.getDayOfWeek();
-        message = dayOfWeek + "," + date;
+        date = date.plusDays(1);
+        DayOfWeek day = date.getDayOfWeek();
+        message = day + ", " + date;
     }
-
 }

@@ -1,13 +1,11 @@
 public class NotificationMessage extends MessageDecorator {
-    Message message;
-
     public NotificationMessage(Message message) {
-        this.message = message;
+        super(message);
     }
 
     @Override
     public String getMessage() {
-        return message.getMessage() + " notification";
+        return message.getMessage() + " - New Notification";
     }
 
     @Override
