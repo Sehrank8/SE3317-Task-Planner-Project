@@ -96,7 +96,7 @@ public class TaskController {
                     .append(task.getDeadline())
                     .append("\n");
         }
-        view.updateTaskList(taskList.toString());
+        view.updateNotification(taskList.toString());
     }
 
 }

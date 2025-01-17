@@ -11,6 +11,7 @@
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/OneDrive/Masaüstü/mysql-connector-j-8.3.0" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
@@ -28,5 +29,6 @@
         <jarDirectory url="file://$USER_HOME$/OneDrive/Masaüstü/mysql-connector-j-8.3.0" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector" level="project" />
   </component>
 </module>

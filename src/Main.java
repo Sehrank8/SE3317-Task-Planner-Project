@@ -11,18 +11,5 @@ public class Main {
         model.addTask(new Task("Grocery Shopping", "Buy groceries", "Personal", "2025-01-04")); */
 
         // Initial Task List
-        List<Task> tasks = model.getTasks();
-        StringBuilder taskList = new StringBuilder();
-        for (Task task : tasks) {
-            taskList.append(task.getName())
-                    .append(" - ")
-                    .append(task.getDescription())
-                    .append(" - ")
-                    .append(task.getCategory())
-                    .append(" - ")
-                    .append(task.getDeadline())
-                    .append("\n");
-        }
-        view.updateTaskList(taskList.toString());
     }
 }

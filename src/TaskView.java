@@ -83,10 +83,10 @@ public class TaskView extends JFrame implements Observer {
         }
     }
     public void updateDayAndDate(Message message) {
-        String[] parts = message.getMessage().split(", ");
+        String[] parts = message.getMessage().split(",");
         if (parts.length >= 2) {
-            dayLabel.setText("Day: " + parts[0]);
-            dateLabel.setText("Date: " + parts[1]);
+            dayLabel.setText(parts[0]);
+            dateLabel.setText(parts[1]);
         }
         if (parts.length >= 3) {
             birthdayLabel.setText(parts[2]);
@@ -110,11 +110,13 @@ public class TaskView extends JFrame implements Observer {
 
     @Override
     public void updateNotification(String message) {
-        notificationsArea.append(message + "\n");
+//        notificationsArea.append(message + "\n");
+        updateTaskList(message);
     }
 
 
-    public void updateTaskList(String tasks) {
+    private void updateTaskList(String tasks) {
+        taskListArea.removeAll();
         taskListArea.setText(tasks);
     }
 

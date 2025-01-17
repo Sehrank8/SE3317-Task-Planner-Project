@@ -27,7 +27,7 @@ public class TaskModel implements Subject {
     public void deleteTask(String taskName) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("DELETE FROM tasks WHERE task_name = ?")) {
-            pstmt.setString(1, "fdsawfdawd");
+            pstmt.setString(1, taskName);
             pstmt.executeUpdate();
             this.notifyObservers("Task deleted: ");
         } catch (SQLException e) {
