@@ -19,7 +19,7 @@ public class TaskView extends JFrame implements Observer {
 
 
         message = new BasicMessage();
-        message = new BirthdayMessage(message, LocalDate.now().toString());
+        message = new BirthdayMessage(message, LocalDate.now().plusDays(2).toString());
         message = new NotificationMessage(message);
 
 
@@ -94,6 +94,8 @@ public class TaskView extends JFrame implements Observer {
         }
     }
 
+
+
     public Task getTaskDetails() {
         String name = JOptionPane.showInputDialog("Enter Task Name:");
         String description = JOptionPane.showInputDialog("Enter Task Description:");
@@ -109,11 +111,13 @@ public class TaskView extends JFrame implements Observer {
     }
 
 
+
     @Override
     public void updateNotification(String message) {
 //        notificationsArea.append(message + "\n");
         updateTaskList(message);
     }
+
 
 
     private void updateTaskList(String tasks) {

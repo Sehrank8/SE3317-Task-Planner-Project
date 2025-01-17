@@ -13,7 +13,7 @@ public class BirthdayMessage extends MessageDecorator {
     public String getMessage() {
         String baseMessage = message.getMessage();
         if (LocalDate.now().toString().equals(birthday)) {
-            baseMessage += " - Happy Birthday!";
+            baseMessage += ",Happy Birthday!";
         }
         return baseMessage;
     }

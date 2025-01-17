@@ -17,7 +17,7 @@ public class TaskModel implements Subject {
             pstmt.setString(3, task.getCategory());
             pstmt.setString(4, task.getDeadline());
             pstmt.executeUpdate();
-            this.notifyObservers("Sdqwadaw");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class TaskModel implements Subject {
              PreparedStatement pstmt = conn.prepareStatement("DELETE FROM tasks WHERE task_name = ?")) {
             pstmt.setString(1, taskName);
             pstmt.executeUpdate();
-            this.notifyObservers("Task deleted: ");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,13 +39,13 @@ public class TaskModel implements Subject {
     public void editTask(String oldName, Task updatedTask) {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(
-                     "UPDATE tasks SET name = ?, category = ?, deadline = ? WHERE name = ?")) {
+                     "UPDATE tasks SET task_name = ?, category = ?, deadline = ? WHERE task_name = ?")) {
             pstmt.setString(1, updatedTask.getName());
             pstmt.setString(2, updatedTask.getCategory());
             pstmt.setString(3, updatedTask.getDeadline());
             pstmt.setString(4, oldName);
             pstmt.executeUpdate();
-            this.notifyObservers("Edited");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
