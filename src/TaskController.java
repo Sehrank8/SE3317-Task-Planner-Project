@@ -8,13 +8,11 @@ import java.util.TimerTask;
 public class TaskController {
     private TaskModel model;
     private TaskView view;
-    private LocalDate currentDate;
     private Timer timer;
 
     public TaskController(TaskModel model, TaskView view) {
         this.model = model;
         this.view = view;
-        this.currentDate = LocalDate.now();
 
         this.view.addAddTaskListener(new AddTaskListener());
         this.view.addDeleteTaskListener(new DeleteTaskListener());
@@ -29,16 +27,11 @@ public class TaskController {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                updateDate();
                 refreshView();
             }
         }, 0, 10000); // Updates every 10 seconds
     }
 
-
-    private void updateDate() {
-        currentDate = currentDate.plusDays(1);
-    }
 
     private void refreshView() {
         view.updateDayAndDate();
