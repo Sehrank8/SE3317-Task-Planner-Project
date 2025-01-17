@@ -82,7 +82,8 @@ public class TaskView extends JFrame implements Observer {
             birthdayLabel.setText(messages[2].trim());
         }
     }
-    public void updateDayAndDate(Message message) {
+    public void updateDayAndDate() {
+        message.addDay();
         String[] parts = message.getMessage().split(",");
         if (parts.length >= 2) {
             dayLabel.setText(parts[0]);

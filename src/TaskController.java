@@ -41,11 +41,7 @@ public class TaskController {
     }
 
     private void refreshView() {
-        Message message = new BasicMessage();
-        message = new BirthdayMessage(message, currentDate.toString());
-        message = new NotificationMessage(message);
-
-        view.updateDayAndDate(message);
+        view.updateDayAndDate();
         updateTaskList();
     }
 

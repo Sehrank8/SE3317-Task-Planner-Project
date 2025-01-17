@@ -3,10 +3,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class BasicMessage extends Message {
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();;
 
     public BasicMessage() {
-        this.date = LocalDate.now();
         DayOfWeek day = date.getDayOfWeek();
         message = day + ", " + date;
     }
