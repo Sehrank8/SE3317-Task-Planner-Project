@@ -9,6 +9,7 @@ public class TaskController {
     private TaskModel model;
     private TaskView view;
     private Timer timer;
+    private LocalDate date = LocalDate.now();
 
     public TaskController(TaskModel model, TaskView view) {
         this.model = model;
@@ -34,8 +35,10 @@ public class TaskController {
 
 
     private void refreshView() {
+        date = date.plusDays(1);
         view.updateDayAndDate();
         updateTaskList();
+
     }
 
     class AddTaskListener implements ActionListener {
@@ -75,6 +78,7 @@ public class TaskController {
     private void updateTaskList() {
         List<Task> tasks = model.getTasks();
         StringBuilder taskList = new StringBuilder();
+
         for (Task task : tasks) {
             taskList.append(task.getName())
                     .append(" - ")
@@ -85,7 +89,22 @@ public class TaskController {
                     .append(task.getDeadline())
                     .append("\n");
         }
-        view.updateNotification(taskList.toString());
+
+        model.notifyObservers(taskList.toString(), checkDeadlines());
+    }
+    public String checkDeadlines() {
+        List<Task> tasks = model.getTasks();
+        LocalDate today = date;
+        StringBuilder taskList = new StringBuilder();
+        taskList.append("\n");
+        for (Task task : tasks) {
+            LocalDate deadline = LocalDate.parse(task.getDeadline());
+            if (deadline.minusDays(1).isEqual(today)) {
+
+                taskList.append(task.getName()).append("\n");
+            }
+        }
+        return taskList.toString();
     }
 
 }

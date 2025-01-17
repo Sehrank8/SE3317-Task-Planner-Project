@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TaskView extends JFrame implements Observer {
 
@@ -113,15 +114,20 @@ public class TaskView extends JFrame implements Observer {
 
 
     @Override
-    public void updateNotification(String message) {
+    public void updateNotification(String message,String msg) {
 //        notificationsArea.append(message + "\n");
         updateTaskList(message);
+        if (!Objects.equals(msg, "\n")) {
+            updateNotificationsList(this.message.getMessage() + " One day until deadlines: " + msg);
+        }
+    }
+    private void updateNotificationsList(String tasks) {
+        notificationsArea.append(tasks);
     }
 
 
 
     private void updateTaskList(String tasks) {
-        taskListArea.removeAll();
         taskListArea.setText(tasks);
     }
 

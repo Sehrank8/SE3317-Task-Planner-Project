@@ -85,20 +85,11 @@ public class TaskModel implements Subject {
     }
 
     @Override
-    public void notifyObservers(String string) {
+    public void notifyObservers(String string,String msg) {
         for (Observer observer : observerList) {
-            observer.updateNotification(string);
+            observer.updateNotification(string, msg);
         }
 
     }
-    public void checkDeadlines() {
-        List<Task> tasks = getTasks();
-        LocalDate today = LocalDate.now();
-        for (Task task : tasks) {
-            LocalDate deadline = LocalDate.parse(task.getDeadline());
-            if (deadline.minusDays(1).isEqual(today)) {
-                this.notifyObservers("Reminder: Task '" + task.getName() + "' is due tomorrow!");
-            }
-        }
-    }
+
 }

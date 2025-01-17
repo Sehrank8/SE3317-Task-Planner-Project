@@ -7,9 +7,8 @@ public class Main {
         TaskController controller = new TaskController(model, view);
 
         // Sample Tasks
-      /*  model.addTask(new Task("Submit Report", "Submit project report", "Work", "2025-01-03"));
-        model.addTask(new Task("Grocery Shopping", "Buy groceries", "Personal", "2025-01-04")); */
+//        model.addTask(new Task("Submit Report", "Submit project report", "Work", "2025-01-18"));
+//        model.addTask(new Task("Grocery Shopping", "Buy groceries", "Personal", "2025-01-04"));
 
-        // Initial Task List
     }
 }

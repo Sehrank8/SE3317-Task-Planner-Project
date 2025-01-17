@@ -1,3 +1,3 @@
 public interface Observer {
-    void updateNotification(String message);
+    void updateNotification(String message,String msg);
 }
