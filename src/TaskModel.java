@@ -22,7 +22,6 @@ public class TaskModel implements Subject {
             e.printStackTrace();
         }
     }
-
     @Override
     public void deleteTask(String taskName) {
         try (Connection conn = DatabaseConnection.getConnection();

@@ -5,7 +5,7 @@ public class NotificationMessage extends MessageDecorator {
 
     @Override
     public String getMessage() {
-        return message.getMessage() + ",you have notification coming";
+        return message.getMessage() + ",you have upcoming task";
     }
 
     @Override

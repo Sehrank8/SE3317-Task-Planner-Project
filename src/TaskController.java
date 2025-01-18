@@ -37,8 +37,17 @@ public class TaskController {
     private void refreshView() {
         date = date.plusDays(1);
         view.updateDayAndDate();
+        checkBirthday();
         updateTaskList();
 
+    }
+    private void checkBirthday() {
+        String birthday = "2025-01-20"; // Kullanıcının doğum günü
+        if (date.toString().equals(birthday)) {
+            view.displayBirthdayMessage("Happy Birthday!");
+        } else {
+            view.clearBirthdayMessage();
+        }
     }
 
     class AddTaskListener implements ActionListener {

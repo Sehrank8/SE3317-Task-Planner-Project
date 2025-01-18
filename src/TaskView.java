@@ -75,7 +75,7 @@ public class TaskView extends JFrame implements Observer {
         setVisible(true);
     }
     private void updateMessageLabels() {
-        // Use the decorator chain to generate and update labels
+        // decorator chain
         String[] messages = message.getMessage().split(",");
         if (messages.length >= 2) {
             dayLabel.setText(messages[0].trim());
@@ -92,7 +92,13 @@ public class TaskView extends JFrame implements Observer {
         updateMessageLabels();
     }
 
+    public void displayBirthdayMessage(String message) {
+        birthdayLabel.setText(message);
+    }
 
+    public void clearBirthdayMessage() {
+        birthdayLabel.setText("");
+    }
 
     public Task getTaskDetails() {
         String name = JOptionPane.showInputDialog("Enter Task Name:");
@@ -115,7 +121,7 @@ public class TaskView extends JFrame implements Observer {
 //        notificationsArea.append(message + "\n");
         updateTaskList(message);
         if (!Objects.equals(msg, "\n")) {
-            updateNotificationsList(this.message.getMessage() + " One day until deadlines: " + msg);
+            updateNotificationsList(this.message.getMessage() + msg);
         }
     }
     private void updateNotificationsList(String tasks) {
