@@ -77,22 +77,19 @@ public class TaskView extends JFrame implements Observer {
     private void updateMessageLabels() {
         // Use the decorator chain to generate and update labels
         String[] messages = message.getMessage().split(",");
-        if (messages.length > 2) {
+        if (messages.length >= 2) {
             dayLabel.setText(messages[0].trim());
             dateLabel.setText(messages[1].trim());
+        }
+        if (messages.length >= 3) {
             birthdayLabel.setText(messages[2].trim());
+        } else {
+            birthdayLabel.setText(""); // Eğer doğum günü mesajı yoksa temizle
         }
     }
     public void updateDayAndDate() {
         message.addDay();
-        String[] parts = message.getMessage().split(",");
-        if (parts.length >= 2) {
-            dayLabel.setText(parts[0]);
-            dateLabel.setText(parts[1]);
-        }
-        if (parts.length >= 3) {
-            birthdayLabel.setText(parts[2]);
-        }
+        updateMessageLabels();
     }
 
 
