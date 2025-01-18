@@ -44,7 +44,7 @@ public class TaskController {
 
     }
     private void checkBirthday() {
-        String birthday = "2025-01-20"; // Kullanıcının doğum günü
+        String birthday = "2025-02-01"; // Kullanıcının doğum günü
         if (date.toString().equals(birthday)) {
             view.displayBirthdayMessage("Happy Birthday!");
         } else {
