@@ -5,6 +5,7 @@ public class Main {
         TaskModel model = new TaskModel();
         TaskView view = new TaskView();
         TaskController controller = new TaskController(model, view);
+        controller.setSortingStrategy(new CategorySortingStrategy());
 
         // Sample Tasks
 //        model.addTask(new Task("Submit Report", "Submit project report", "Work", "2025-01-18"));

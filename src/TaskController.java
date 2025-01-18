@@ -10,6 +10,7 @@ public class TaskController {
     private TaskView view;
     private Timer timer;
     private LocalDate date = LocalDate.now();
+    private TaskSortingStrategy sortingStrategy;
 
     public TaskController(TaskModel model, TaskView view) {
         this.model = model;
@@ -22,6 +23,7 @@ public class TaskController {
         model.registerObserver(view);
         startTimer();
     }
+
 
     private void startTimer() {
         timer = new Timer(true);
@@ -48,6 +50,9 @@ public class TaskController {
         } else {
             view.clearBirthdayMessage();
         }
+    }
+    public void setSortingStrategy(TaskSortingStrategy sortingStrategy) {
+        this.sortingStrategy = sortingStrategy;
     }
 
     class AddTaskListener implements ActionListener {
@@ -86,6 +91,10 @@ public class TaskController {
 
     private void updateTaskList() {
         List<Task> tasks = model.getTasks();
+        if (sortingStrategy != null) {
+            tasks = sortingStrategy.sort(tasks);
+        }
+
         StringBuilder taskList = new StringBuilder();
 
         for (Task task : tasks) {
