@@ -20,7 +20,7 @@ public class TaskView extends JFrame implements Observer {
 
 
         message = new BasicMessage();
-        message = new BirthdayMessage(message, LocalDate.now().plusDays(2).toString());
+        message = new BirthdayMessage(message);
         message = new NotificationMessage(message);
 
 

@@ -2,11 +2,11 @@ import java.time.LocalDate;
 
 
 public class BirthdayMessage extends MessageDecorator {
-    private final String birthday;
+    private final String birthday = "2025-01-18";
 
-    public BirthdayMessage(Message message, String birthday) {
+    public BirthdayMessage(Message message) {
         super(message);
-        this.birthday = birthday;
+
     }
 
     @Override

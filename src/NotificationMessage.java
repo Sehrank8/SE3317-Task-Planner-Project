@@ -5,7 +5,7 @@ public class NotificationMessage extends MessageDecorator {
 
     @Override
     public String getMessage() {
-        return message.getMessage();
+        return message.getMessage() + ",you have notification coming";
     }
 
     @Override
