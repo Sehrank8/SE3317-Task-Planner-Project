@@ -17,7 +17,7 @@ Clone the repository:
 
 bash
 Copy
-git clone [https://github.com/Gizoskos/SE3317-Project.git](https://github.com/Sehrank8/SE3317-Task-Planner-Project)
+git clone https://github.com/Sehrank8/SE3317-Task-Planner-Project
 Navigate to the project directory:
 
 bash
